@@ -6,7 +6,7 @@
 #    By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 11:30:21 by rvarela-          #+#    #+#              #
-#    Updated: 2024/02/04 16:45:23 by rvarela          ###   ########.fr        #
+#    Updated: 2024/02/16 17:15:00 by rvarela          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,8 @@ SRCDIR = src
 
 INCDIR = includes
 
-SRC = main.c #add functions
-
-
+SRC = main.c ft_split.c stack_init.c error_check.c push_op.c rev_rot_op.c
+	rotate_op.c sort_three.c stack_utils.c stack_utils2.c swap_op.c
 
 OBJ = $(addprefix $(SRCDIR)/, $(SRC:.c=.o))
 

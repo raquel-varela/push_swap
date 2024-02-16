@@ -6,20 +6,73 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:57:39 by rvarela-          #+#    #+#             */
-/*   Updated: 2024/02/04 16:49:34 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/02/16 17:15:18 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP.H
-# define PUSH_SWAP.H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
+/*read, write*/
+# include <unistd.h>
+/*malloc, free, exit*/
+# include <stdlib.h>
+/*MAX MIN*/
+# include <limits.h>
+/*booleans*/
+# include <stdbool.h>
+/*printf for tests*/
+# include <stdio.h>
 
+typedef struct s_stack_node
+{
+	int					nbr;
+	int					index;
+	bool				push_cost;
+	bool				cheapest;
+	struct s_stack_node	*target_node;
+	struct s_stack_node	*prev;
+	struct s_stack_node	*next;
+}					t_stack_node;
 
-//functions
+//Utils
+char	**ft_split(char *str, char sep);
 
+//Handle errors
+int		check_syntax(char *str);
+int		check_duplicates(t_stack_node *node, int nbr);
+void	free_errors(t_stack_node **stack, char **av, int ac2);
+void	free_av_split(char **av);
+void	free_stack(t_stack_node **stack);
 
+//Stack initiation
+void	stack_init(t_stack_node **stack, char **str, int ac2);
+/*init_stack_a*/
+
+//Nodes initiation
+
+//Stack utils
+t_stack_node	*find_last_node(t_stack_node *node);
+void			add_node(t_stack_node **stack, int nbr);
+t_stack_node	*find_max_node(t_stack_node *node);
+t_stack_node	*find_min_node(t_stack_node *node);
+int				stack_len(t_stack_node *node);
+bool			stack_sorted(t_stack_node *node);
+
+//Operations
+void	push_op(t_stack_node **dest, t_stack_node **src, char list);
+void	ra(t_stack_node **a);
+void	rb(t_stack_node **b);
+void	rr(t_stack_node **a, t_stack_node **b);
+void	sa(t_stack_node **a);
+void	sb(t_stack_node **b);
+void	ss(t_stack_node **a, t_stack_node **b);
+void	rra(t_stack_node **a);
+void	rrb(t_stack_node **b);
+void	rrr(t_stack_node **a, t_stack_node **b);
+
+//Algorithm
+/*sort_three
+turk_algo*/
 
 #endif

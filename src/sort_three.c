@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 10:56:53 by rvarela-          #+#    #+#             */
-/*   Updated: 2024/02/16 16:33:45 by rvarela          ###   ########.fr       */
+/*   Created: 2024/02/16 16:39:45 by rvarela           #+#    #+#             */
+/*   Updated: 2024/02/16 17:12:27 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
-int	main(int ac, char **av)
+/*if the 1st is biggest ra, else if the 2nd is biggest rra, if 1st > 2nd sa*/
+void	sort_three(t_stack_node **a)
 {
-	t_stack_node	*a;
-	t_stack_node	*b;
+	t_stack_node	*biggest_node;	
 
-	a = NULL;
-	b = NULL;
-	if (ac <= 1 || (ac == 2 && !av[1][0]))
-		return (0);
-	else if (ac == 2)
-		av = ft_split(av[1], ' ');
-	stack_init(&a, av + 1, ac == 2);
-	if (!stack_sorted(a))
-	{
-		if (stack_len(a) == 2)
-			sa(&a);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else
-			turk_algo(&a, &b);
-	}
-	free_stack(&a);
-	return (0);
+	biggest_node = find_max_node(*a);
+	if (*a == biggest_node)
+		ra(a);
+	else if ((*a)->next == biggest_node)
+		rra(a);
+	if ((*a)->nbr > (*a)->next->nbr)
+		sa(a);
 }
