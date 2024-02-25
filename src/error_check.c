@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:09:53 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/16 17:16:29 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/02/25 16:23:10 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@ int	check_syntax(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] != '+' || str[i] != '-' || !(str[i] >= '0' && str[i] <= '9'))
+	if (!(str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9')))
 		return (0);
-	if (str[i] == '+' || str[i] == '-' && (!(str[i + 1] >= '0'
-				&& str[i + 1] <= '9')))
+	if ((str[i] == '+' || str[i] == '-') && !(str[i + 1] >= '0'
+			&& str[i + 1] <= '9'))
 		return (0);
-	while (str[++i])
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] != '\0')
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
 			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -80,7 +83,7 @@ void	free_stack(t_stack_node **stack)
 void	free_errors(t_stack_node **stack, char **av, int ac2)
 {
 	free_stack(stack);
-	if (ac2)
+	if (ac2 == 2)
 		free_av_split(av);
 	write (2, "Error\n", 6);
 	exit(1);

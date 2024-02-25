@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:22:13 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/16 15:54:25 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/02/25 16:47:33 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	swap_op(t_stack_node **stack)
 {
+	t_stack_node	*tmp;
+
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return ;
-	*stack = (*stack)->next;
-	(*stack)->prev->prev = *stack;
-	if ((*stack)->next)
-		(*stack)->next->prev = (*stack)->prev;
-	(*stack)->next = (*stack)->prev;
-	(*stack)->prev = NULL;
+	tmp = (*stack)->next;
+	(*stack)->next = (*stack)->next->next;
+	tmp->next = (*stack);
+	(*stack) = tmp;
 }
 
 void	sa(t_stack_node **a)
@@ -58,6 +58,6 @@ void	ss(t_stack_node **a, t_stack_node **b)
 	a->next->next->prev = a->next;
 	a->next->next->next = NULL;
 	printf("%i, %i, %i\n", a->nbr, a->next->nbr, a->next->next->nbr);
-	swap_op(&a);
+	sa(&a);
 	printf("%i, %i, %i\n", a->nbr, a->next->nbr, a->next->next->nbr);
 }*/

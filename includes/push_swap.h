@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:57:39 by rvarela-          #+#    #+#             */
-/*   Updated: 2024/02/16 17:15:18 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/02/23 18:19:30 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ typedef struct s_stack_node
 {
 	int					nbr;
 	int					index;
-	bool				push_cost;
-	bool				cheapest;
+	int					push_cost;
+	int					cheapest;
+	int					above_median;
 	struct s_stack_node	*target_node;
 	struct s_stack_node	*prev;
 	struct s_stack_node	*next;
@@ -47,9 +48,9 @@ void	free_stack(t_stack_node **stack);
 
 //Stack initiation
 void	stack_init(t_stack_node **stack, char **str, int ac2);
-/*init_stack_a*/
 
 //Nodes initiation
+void	prepare_nodes(t_stack_node *a, t_stack_node *b);
 
 //Stack utils
 t_stack_node	*find_last_node(t_stack_node *node);
@@ -58,6 +59,8 @@ t_stack_node	*find_max_node(t_stack_node *node);
 t_stack_node	*find_min_node(t_stack_node *node);
 int				stack_len(t_stack_node *node);
 bool			stack_sorted(t_stack_node *node);
+t_stack_node	*get_cheapest_node(t_stack_node *stack);
+void			is_above_median(t_stack_node *stack);
 
 //Operations
 void	push_op(t_stack_node **dest, t_stack_node **src, char list);
@@ -72,7 +75,7 @@ void	rrb(t_stack_node **b);
 void	rrr(t_stack_node **a, t_stack_node **b);
 
 //Algorithm
-/*sort_three
-turk_algo*/
+void	sort_three(t_stack_node **a);
+void	turk_algo(t_stack_node **a, t_stack_node **b);
 
 #endif
