@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:14:15 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/23 18:45:33 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:30:27 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	is_above_median(t_stack_node *stack)
 		else
 			stack->above_median = 0;
 		stack = stack->next;
-		i++;
+		++i;
 	}
 }
 
@@ -72,11 +72,11 @@ static void	set_cost(t_stack_node *a, t_stack_node *b)
 	{
 		b->push_cost = b->index;
 		if (b->above_median == 0)
-			b->push_cost = len_b - b->index;
+			b->push_cost = len_b - (b->index);
 		if (b->target_node->above_median == 1)
 			b->push_cost += b->target_node->index;
 		else
-			b->push_cost += len_a - b->target_node->index;
+			b->push_cost += len_a - (b->target_node->index);
 		b = b->next;
 	}
 }

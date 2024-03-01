@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:52:03 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/23 18:42:58 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:26:21 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	move_nodes(t_stack_node **a, t_stack_node **b)
 	}
 	push_op(a, b, 'a');
 }
-
 
 /*push all node in b except 3
  *sort 3
