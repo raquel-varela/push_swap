@@ -6,13 +6,13 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:15:24 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/16 14:55:29 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/15 15:35:39 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	count_words(char *str, char sep)
+static int	count_words(char *str, char sep)
 {
 	int	i;
 	int	words;
@@ -31,7 +31,7 @@ int	count_words(char *str, char sep)
 	return (words);
 }
 
-char	*ft_strcpy(char *s1, char *s2, int n)
+static char	*ft_strcpy(char *s1, char *s2, int n)
 {
 	int	i;
 

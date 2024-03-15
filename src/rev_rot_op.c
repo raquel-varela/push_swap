@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:33:16 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/16 17:15:58 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/09 15:43:50 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	rev_rot_op(t_stack_node **stack)
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return ;
 	last_node = find_last_node(*stack);
-	last_node->next = *stack;
 	last_node->prev->next = NULL;
+	last_node->next = *stack;
 	last_node->prev = NULL;
 	*stack = last_node;
 	last_node->next->prev = last_node;

@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:57:39 by rvarela-          #+#    #+#             */
-/*   Updated: 2024/02/23 18:19:30 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/15 14:29:55 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ void	free_av_split(char **av);
 void	free_stack(t_stack_node **stack);
 
 //Stack initiation
-void	stack_init(t_stack_node **stack, char **str, int ac2);
+void	stack_init(t_stack_node **stack, char **av, int ac2);
 
 //Nodes initiation
-void	prepare_nodes(t_stack_node *a, t_stack_node *b);
+void	prepare_nodes_a(t_stack_node *a, t_stack_node *b);
+void	prepare_nodes_b(t_stack_node *a, t_stack_node *b);
 
 //Stack utils
 t_stack_node	*find_last_node(t_stack_node *node);
@@ -61,6 +62,7 @@ int				stack_len(t_stack_node *node);
 bool			stack_sorted(t_stack_node *node);
 t_stack_node	*get_cheapest_node(t_stack_node *stack);
 void			is_above_median(t_stack_node *stack);
+void			set_cheapest(t_stack_node *b);
 
 //Operations
 void	push_op(t_stack_node **dest, t_stack_node **src, char list);

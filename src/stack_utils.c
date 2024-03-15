@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:31:08 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/25 12:28:36 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/10 15:53:19 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_stack_node	*find_max_node(t_stack_node *node)
 
 	if (node == NULL)
 		return (NULL);
-	max = INT_MIN;
+	max = LONG_MIN;
 	while (node)
 	{
 		if (node->nbr > max)
@@ -74,7 +74,7 @@ t_stack_node	*find_min_node(t_stack_node *node)
 
 	if (node == NULL)
 		return (NULL);
-	min = INT_MAX;
+	min = LONG_MAX;
 	while (node)
 	{
 		if (node->nbr < min)

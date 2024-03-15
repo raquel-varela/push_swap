@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:14:15 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/01 18:30:27 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/15 16:28:58 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	is_above_median(t_stack_node *stack)
 	median = stack_len(stack) / 2;
 	while (stack)
 	{
-		i = stack->index;
+		stack->index = i;
 		if (i <= median)
 			stack->above_median = 1;
 		else
@@ -33,7 +33,34 @@ void	is_above_median(t_stack_node *stack)
 	}
 }
 
-static void	set_target_node(t_stack_node *a, t_stack_node *b)
+static void	set_target_node_a(t_stack_node *a, t_stack_node *b)
+{
+	t_stack_node	*current_b;
+	t_stack_node	*target_node;
+	long			best_match_index;
+
+	while (a)
+	{
+		best_match_index = LONG_MIN;
+		current_b = b;
+		while (current_b)
+		{
+			if (current_b->nbr < a->nbr && current_b->nbr > best_match_index)
+			{
+				best_match_index = current_b->nbr;
+				target_node = current_b;
+			}
+			current_b = current_b->next;
+		}
+		if (best_match_index == LONG_MIN)
+			a->target_node = find_max_node(b);
+		else
+			a->target_node = target_node;
+		a = a->next;
+	}
+}
+
+static void	set_target_node_b(t_stack_node *a, t_stack_node *b)
 {
 	t_stack_node	*current_a;
 	t_stack_node	*target_node;
@@ -68,21 +95,21 @@ static void	set_cost(t_stack_node *a, t_stack_node *b)
 
 	len_a = stack_len(a);
 	len_b = stack_len(b);
-	while (b)
+	while (a)
 	{
-		b->push_cost = b->index;
-		if (b->above_median == 0)
-			b->push_cost = len_b - (b->index);
-		if (b->target_node->above_median == 1)
-			b->push_cost += b->target_node->index;
+		a->push_cost = a->index;
+		if (!(a->above_median))
+			a->push_cost = len_a - (a->index);
+		if (a->target_node->above_median)
+			a->push_cost += a->target_node->index;
 		else
-			b->push_cost += len_a - (b->target_node->index);
-		b = b->next;
+			a->push_cost += len_b - (a->target_node->index);
+		a = a->next;
 	}
 }
 
 //Find the cheapest node to move from b to a in the current stack config
-static void	set_cheapest(t_stack_node *b)
+void	set_cheapest(t_stack_node *b)
 {
 	long			smallest_cost;
 	t_stack_node	*best_match_node;
@@ -102,11 +129,18 @@ static void	set_cheapest(t_stack_node *b)
 	best_match_node->cheapest = 1;
 }
 
-void	prepare_nodes(t_stack_node *a, t_stack_node *b)
+void	prepare_nodes_a(t_stack_node *a, t_stack_node *b)
 {
 	is_above_median(a);
 	is_above_median(b);
-	set_target_node(a, b);
+	set_target_node_a(a, b);
 	set_cost(a, b);
-	set_cheapest(b);
+	set_cheapest(a);
+}
+
+void	prepare_nodes_b(t_stack_node *a, t_stack_node *b)
+{
+	is_above_median(a);
+	is_above_median(b);
+	set_target_node_b(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:56:53 by rvarela-          #+#    #+#             */
-/*   Updated: 2024/02/25 16:30:41 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/15 15:55:03 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
-	if (ac <= 1 || (ac == 2 && !av[1][0]))
+	if (ac == 1 || (ac == 2 && !av[1][0]))
 		return (0);
 	else if (ac == 2)
 		av = ft_split(av[1], ' ');

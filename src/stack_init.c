@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:42:14 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/25 16:20:46 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/15 15:50:54 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static long	ft_atol(char *str)
 			sign = -sign;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		nbr = nbr * 10 + str[i] - 48;
+		nbr = nbr * 10 + (str[i] - 48);
 		i++;
 	}
 	return (nbr * sign);
@@ -54,7 +54,7 @@ void	stack_init(t_stack_node **stack, char **av, int ac2)
 		if (check_duplicates(*stack, (int)nbr) == 1)
 			free_errors(stack, av, ac2);
 		add_node(stack, (int)nbr);
-		++i;
+		i++;
 	}
 	if (ac2 == 2)
 		free_av_split(av);

@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:24:45 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/16 15:25:28 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/15 15:21:54 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	rr(t_stack_node **a, t_stack_node **b)
 {
 	rotate_op(a);
 	rotate_op(b);
-	write(1, "rr\n", 1);
+	write(1, "rr\n", 3);
 }
 
 /*int	main()
