@@ -6,13 +6,13 @@
 #    By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 11:30:21 by rvarela-          #+#    #+#              #
-#    Updated: 2024/02/23 18:39:56 by rvarela          ###   ########.fr        #
+#    Updated: 2024/03/17 11:27:07 by rvarela          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
 SRCDIR = src
 

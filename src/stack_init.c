@@ -6,35 +6,38 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:42:14 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/15 15:50:54 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/17 12:54:05 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static long	ft_atol(char *str)
+static long	ft_atol(const char *str)
 {
-	long	nbr;
-	int		sign;
+	long	num;
+	int		isneg;
 	int		i;
 
+	num = 0;
+	isneg = 1;
 	i = 0;
-	sign = 1;
-	nbr = 0;
-	while (str[i] && (str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\n' || str[i] == '\r'
+			|| str[i] == '\v' || str[i] == '\f'))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
 	{
-		if (str[i] == '-')
-			sign = -sign;
+		isneg *= -1;
 		i++;
 	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nbr = nbr * 10 + (str[i] - 48);
+		num = (num * 10) + (str[i] - '0');
 		i++;
 	}
-	return (nbr * sign);
+	return (num * isneg);
 }
 
 /*If i have to free av from the HEAP i can use a flag in the function below*/

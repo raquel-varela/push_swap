@@ -6,20 +6,20 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:31:08 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/10 15:53:19 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/17 13:07:44 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 /*Search for the last node and add a node*/
-t_stack_node	*find_last_node(t_stack_node *node)
+t_stack_node	*find_last_node(t_stack_node *stack)
 {
-	if (node == NULL)
+	if (stack == NULL)
 		return (NULL);
-	while (node->next)
-		node = node->next;
-	return (node);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
 }
 
 void	add_node(t_stack_node **stack, int nbr)
@@ -54,7 +54,7 @@ t_stack_node	*find_max_node(t_stack_node *node)
 
 	if (node == NULL)
 		return (NULL);
-	max = LONG_MIN;
+	max = INT_MIN;
 	while (node)
 	{
 		if (node->nbr > max)
@@ -74,7 +74,7 @@ t_stack_node	*find_min_node(t_stack_node *node)
 
 	if (node == NULL)
 		return (NULL);
-	min = LONG_MAX;
+	min = INT_MAX;
 	while (node)
 	{
 		if (node->nbr < min)

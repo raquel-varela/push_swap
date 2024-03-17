@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:14:15 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/15 16:28:58 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/17 13:12:09 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	set_target_node_a(t_stack_node *a, t_stack_node *b)
 
 	while (a)
 	{
-		best_match_index = LONG_MIN;
+		best_match_index = INT_MIN;
 		current_b = b;
 		while (current_b)
 		{
@@ -52,7 +52,7 @@ static void	set_target_node_a(t_stack_node *a, t_stack_node *b)
 			}
 			current_b = current_b->next;
 		}
-		if (best_match_index == LONG_MIN)
+		if (best_match_index == INT_MIN)
 			a->target_node = find_max_node(b);
 		else
 			a->target_node = target_node;
@@ -68,7 +68,7 @@ static void	set_target_node_b(t_stack_node *a, t_stack_node *b)
 
 	while (b)
 	{
-		best_match_index = LONG_MAX;
+		best_match_index = INT_MAX;
 		current_a = a;
 		while (current_a)
 		{
@@ -79,7 +79,7 @@ static void	set_target_node_b(t_stack_node *a, t_stack_node *b)
 			}
 			current_a = current_a->next;
 		}
-		if (best_match_index == LONG_MAX)
+		if (best_match_index == INT_MAX)
 			b->target_node = find_min_node(a);
 		else
 			b->target_node = target_node;
@@ -98,9 +98,9 @@ static void	set_cost(t_stack_node *a, t_stack_node *b)
 	while (a)
 	{
 		a->push_cost = a->index;
-		if (!(a->above_median))
+		if (a->above_median == 0)
 			a->push_cost = len_a - (a->index);
-		if (a->target_node->above_median)
+		if (a->target_node->above_median == 1)
 			a->push_cost += a->target_node->index;
 		else
 			a->push_cost += len_b - (a->target_node->index);
@@ -116,7 +116,7 @@ void	set_cheapest(t_stack_node *b)
 
 	if (b == NULL)
 		return ;
-	smallest_cost = LONG_MAX;
+	smallest_cost = INT_MAX;
 	while (b)
 	{
 		if (b->push_cost < smallest_cost)
@@ -126,7 +126,7 @@ void	set_cheapest(t_stack_node *b)
 		}
 		b = b->next;
 	}
-	best_match_node->cheapest = 1;
+	(best_match_node->cheapest) = 1;
 }
 
 void	prepare_nodes_a(t_stack_node *a, t_stack_node *b)

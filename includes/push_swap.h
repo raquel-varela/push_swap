@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 10:57:39 by rvarela-          #+#    #+#             */
-/*   Updated: 2024/03/15 14:29:55 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/17 13:08:25 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	prepare_nodes_a(t_stack_node *a, t_stack_node *b);
 void	prepare_nodes_b(t_stack_node *a, t_stack_node *b);
 
 //Stack utils
-t_stack_node	*find_last_node(t_stack_node *node);
+t_stack_node	*find_last_node(t_stack_node *stack);
 void			add_node(t_stack_node **stack, int nbr);
 t_stack_node	*find_max_node(t_stack_node *node);
 t_stack_node	*find_min_node(t_stack_node *node);
