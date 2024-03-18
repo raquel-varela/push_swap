@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_op.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rvarela- <rvarela-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:24:45 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/15 15:21:54 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/18 20:36:26 by rvarela-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,21 @@
 static void	rotate_op(t_stack_node **stack)
 {
 	t_stack_node	*last_node;
+	t_stack_node	*tmp;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	/*if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return ;
 	last_node = find_last_node(*stack);
 	last_node->next = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
 	last_node->next->prev = last_node;
-	last_node->next->next = NULL;
+	last_node->next->next = NULL;*/
+	tmp = *stack;
+	(*stack) = (*stack)->next;
+	tmp->next = NULL;
+	last_node = find_last_node(*stack);
+	last_node->next = tmp;
 }
 
 void	ra(t_stack_node **a)

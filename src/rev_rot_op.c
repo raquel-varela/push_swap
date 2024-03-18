@@ -3,27 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rot_op.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rvarela- <rvarela-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 22:33:16 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/17 21:05:17 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/18 20:26:57 by rvarela-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+t_stack_node	*second_last_node(t_stack_node *head)
+{
+	while (head && head->next && head->next->next)
+		head = head->next;
+	return (head);
+}
+
+
 static void	rev_rot_op(t_stack_node **stack)
 {
-	t_stack_node	*last_node;
+	t_stack_node	*last;
+	t_stack_node	*second_last;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	/*if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return ;
 	last_node = find_last_node(*stack);
 	last_node->prev->next = NULL;
 	last_node->next = *stack;
 	last_node->prev = NULL;
 	*stack = last_node;
-	last_node->next->prev = last_node;
+	last_node->next->prev = last_node;*/
+	last = find_last_node(*stack);
+	second_last = second_last_node(*stack);
+	second_last->next = NULL;
+	last->next = *stack;
+	*stack = last;
 }
 
 void	rra(t_stack_node **a)

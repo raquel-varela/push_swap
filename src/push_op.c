@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_op.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rvarela- <rvarela-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:27:29 by rvarela           #+#    #+#             */
-/*   Updated: 2024/02/16 15:59:24 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/18 19:13:39 by rvarela-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	push_op(t_stack_node **dest, t_stack_node **src, char list)
 		return ;
 	node = *src;
 	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	node->prev = NULL;
 	if (*dest == NULL)
 	{
 		*dest = node;
@@ -28,7 +31,7 @@ void	push_op(t_stack_node **dest, t_stack_node **src, char list)
 	else
 	{
 		node->next = *dest;
-		(*dest)->prev = node;
+		node->next->prev = node;
 		*dest = node;
 	}
 	write(1, "p", 1);

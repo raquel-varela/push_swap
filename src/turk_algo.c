@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turk_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rvarela- <rvarela-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:52:03 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/17 21:06:34 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/18 20:32:35 by rvarela-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ static void	rrr_both(t_stack_node **a, t_stack_node **b,
 	is_above_median(*a);
 	is_above_median(*b);
 }
+
+/*static void	print_stack(t_stack_node *a)
+{
+	if (!(a))
+		return ;
+	while (a)
+	{
+		printf("%i\n", a->nbr);
+		a = a->next;
+	}
+}*/
+
+
 
 static void	move_nodes_a_to_b(t_stack_node **a, t_stack_node **b)
 {
@@ -62,13 +75,18 @@ static void	move_nodes_b_to_a(t_stack_node **a, t_stack_node **b)
 {
 	while (*a != (*b)->target_node)
 	{
+		/*print_stack(*a);
+		printf("target:%i\n", (*b)->target_node->nbr);*/
 		if (((*b)->target_node->above_median) == 1)
 			ra(a);
 		else
 			rra(a);
 	}
 	push_op(a, b, 'a');
+	//printf("prev:%i\n", (*a)->prev->nbr);
 }
+
+
 
 void	turk_algo(t_stack_node **a, t_stack_node **b)
 {
