@@ -6,7 +6,7 @@
 /*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:14:15 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/17 13:12:09 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/21 17:43:35 by rvarela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	set_target_node_a(t_stack_node *a, t_stack_node *b)
 
 	while (a)
 	{
-		best_match_index = INT_MIN;
+		best_match_index = LONG_MIN;
 		current_b = b;
 		while (current_b)
 		{
@@ -52,7 +52,7 @@ static void	set_target_node_a(t_stack_node *a, t_stack_node *b)
 			}
 			current_b = current_b->next;
 		}
-		if (best_match_index == INT_MIN)
+		if (best_match_index == LONG_MIN)
 			a->target_node = find_max_node(b);
 		else
 			a->target_node = target_node;
@@ -68,7 +68,7 @@ static void	set_target_node_b(t_stack_node *a, t_stack_node *b)
 
 	while (b)
 	{
-		best_match_index = INT_MAX;
+		best_match_index = LONG_MAX;
 		current_a = a;
 		while (current_a)
 		{
@@ -79,7 +79,7 @@ static void	set_target_node_b(t_stack_node *a, t_stack_node *b)
 			}
 			current_a = current_a->next;
 		}
-		if (best_match_index == INT_MAX)
+		if (best_match_index == LONG_MAX)
 			b->target_node = find_min_node(a);
 		else
 			b->target_node = target_node;
