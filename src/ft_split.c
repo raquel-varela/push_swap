@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rvarela <rvarela@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rvarela- <rvarela-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:15:24 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/17 12:50:56 by rvarela          ###   ########.fr       */
+/*   Updated: 2024/03/22 14:12:31 by rvarela-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ static char	*ft_strcpy(char *s1, char *s2, int n)
 	return (s1);
 }
 
+static char	**res_init(char *str, char sep)
+{
+	char	**res;
+
+	res = (char **)malloc(sizeof(char *) * (count_words(str, sep) + 2));
+	if (!res)
+		return (NULL);
+	res[0] = ft_strcpy(res[0], "a.out", 5);
+	return (res);
+}
+
 char	**ft_split(char *str, char sep)
 {
 	int		i;
@@ -55,13 +66,10 @@ char	**ft_split(char *str, char sep)
 	int		k;
 	char	**res;
 
-	res = (char **)malloc(sizeof(char *) * (count_words(str, sep) + 2));
-	if (!res)
-		return (NULL);
 	i = 0;
 	j = 0;
 	k = 1;
-	res[0] = ft_strcpy(res[0], "a.out", 5);
+	res = res_init(str, sep);
 	while (str[i])
 	{
 		while (str[i] && str[i] == sep)

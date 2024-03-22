@@ -6,7 +6,7 @@
 /*   By: rvarela- <rvarela-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 16:24:45 by rvarela           #+#    #+#             */
-/*   Updated: 2024/03/18 20:36:26 by rvarela-         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:41:54 by rvarela-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,15 @@
 static void	rotate_op(t_stack_node **stack)
 {
 	t_stack_node	*last_node;
-	t_stack_node	*tmp;
 
-	/*if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return ;
 	last_node = find_last_node(*stack);
 	last_node->next = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
 	last_node->next->prev = last_node;
-	last_node->next->next = NULL;*/
-	tmp = *stack;
-	(*stack) = (*stack)->next;
-	tmp->next = NULL;
-	last_node = find_last_node(*stack);
-	last_node->next = tmp;
+	last_node->next->next = NULL;
 }
 
 void	ra(t_stack_node **a)
@@ -50,6 +44,15 @@ void	rr(t_stack_node **a, t_stack_node **b)
 	rotate_op(a);
 	rotate_op(b);
 	write(1, "rr\n", 3);
+}
+
+void	rr_both(t_stack_node **a, t_stack_node **b,
+	t_stack_node *cheapest_node)
+{
+	while (*b != cheapest_node->target_node && *a != cheapest_node)
+		rr(a, b);
+	is_above_median(*a);
+	is_above_median(*b);
 }
 
 /*int	main()
